@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grimórios · Tormenta RPG</title>
+<meta name="description" content="Grimórios interativos de Turgon e Cael para Tormenta RPG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#0d0b12; --ink:#ece4d4; --muted:#a99f8e; --line:rgba(236,228,212,.12);
+ --gold:#d9b46a; --serif:'EB Garamond',Georgia,'Times New Roman',serif; --display:'Cinzel','Trajan Pro',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:dark}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.5;
+ background-image:radial-gradient(1200px 600px at 50% -10%,rgba(217,180,106,.14),transparent 60%),
+  radial-gradient(800px 500px at 10% 110%,rgba(62,140,96,.12),transparent 60%),
+  radial-gradient(800px 500px at 90% 110%,rgba(150,96,220,.12),transparent 60%);
+ display:flex;flex-direction:column;align-items:center;padding:clamp(2rem,6vw,4.5rem) 16px 2.5rem}
+header{text-align:center;max-width:720px;margin-bottom:clamp(2rem,5vw,3.5rem)}
+.eyebrow{font-family:var(--display);letter-spacing:.32em;font-size:.78rem;color:var(--gold);text-transform:uppercase}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.1;margin:.5rem 0 .7rem;letter-spacing:.02em}
+.rule{display:flex;align-items:center;gap:.8rem;justify-content:center;color:var(--gold);margin:0 auto .9rem;max-width:280px}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+header p{color:var(--muted);font-style:italic;font-size:1.1rem}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(1.2rem,3vw,2rem);width:100%;max-width:880px}
+.card{--acc:#7fd1a0;--glow:rgba(62,160,104,.35);position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;
+ background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:22px;overflow:hidden;
+ transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.card.cael{--acc:#c3a6ff;--glow:rgba(150,96,220,.38)}
+.card:hover,.card:focus-visible{transform:translateY(-6px);border-color:color-mix(in srgb,var(--acc) 55%,transparent);box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 0 1px color-mix(in srgb,var(--acc) 30%,transparent),0 0 60px var(--glow)}
+.card:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.art{position:relative;height:clamp(300px,42vw,380px);display:grid;place-items:center;overflow:hidden;
+ background:radial-gradient(closest-side at 50% 55%,var(--glow),transparent 75%)}
+.art::after{content:"";position:absolute;inset:auto 0 0 0;height:35%;background:linear-gradient(transparent,rgba(13,11,18,.85))}
+.art img{position:relative;z-index:1;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .art>img{transform:scale(1.04)}
+.turgon .art img{width:78%;max-width:300px;aspect-ratio:1;border-radius:50%;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+.cael .art>img{position:absolute;inset:14px 0 6px;width:100%;height:calc(100% - 20px);object-fit:contain;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+.pet{position:absolute;z-index:2;right:14px;bottom:14px;width:96px;height:96px;border-radius:50%;
+ background:radial-gradient(circle at 50% 60%,rgba(255,110,40,.35),rgba(13,11,18,.9) 70%);border:1px solid rgba(255,140,70,.45);
+ display:grid;place-items:center;overflow:hidden;box-shadow:0 0 24px rgba(255,100,30,.35)}
+.pet img{position:absolute;width:210px;max-width:none;height:auto;left:-118px;top:-80px}
+.pet span{position:absolute;z-index:1;bottom:6px;padding:.05rem .4rem;border-radius:99px;background:rgba(13,11,18,.75);font-family:var(--display);font-size:.62rem;letter-spacing:.14em;color:#ffb38a;text-shadow:0 1px 4px #000}
+.body{position:relative;padding:1.2rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.cls{font-family:var(--display);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+.card h2{font-family:var(--display);font-weight:700;font-size:1.9rem;line-height:1.1}
+.card p{color:var(--muted);font-size:1.05rem}
+.go{margin-top:auto;padding-top:.8rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);
+ font-family:var(--display);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.go b{color:var(--acc);font-weight:500;transition:transform .3s}
+.card:hover .go b{transform:translateX(5px)}
+footer{margin-top:clamp(2.5rem,6vw,4rem);color:var(--muted);font-size:.9rem;text-align:center;font-style:italic}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">Tormenta RPG</div>
+ <h1>Grimórios</h1>
+ <div class="rule">✦</div>
+ <p>Escolha um personagem para abrir o grimório.</p>
+</header>
+
+<main class="cards">
+ <a class="card turgon" href="turgon_grimorio.html">
+  <div class="art"><img src="img/turgon.webp" alt="Turgon, de capuz e rosto coberto por um lenço" width="300" height="300"></div>
+  <div class="body">
+   <span class="cls">Nagah · Mago 9</span>
+   <h2>Turgon</h2>
+   <p>Ilusionista e mestre da enganação, sob a sombra de Sszzaas.</p>
+   <span class="go">Abrir grimório <b>→</b></span>
+  </div>
+ </a>
+ <a class="card cael" href="cael_grimorio.html">
+  <div class="art">
+   <img src="img/cael.webp" alt="Cael, sprite de asas de cristal negro" width="240" height="360">
+   <div class="pet" title="Brasa, companheiro animal"><img src="img/brasa.webp" alt="" width="113" height="113"><span>BRASA</span></div>
+  </div>
+  <div class="body">
+   <span class="cls">Sprite · Druida 1 / Mago 5</span>
+   <h2>Cael</h2>
+   <p>Druida ermitã e maga evocadora, devota de Wynna.</p>
+   <span class="go">Abrir grimório <b>→</b></span>
+  </div>
+ </a>
+</main>
+
+<footer>Os dados de cada grimório ficam salvos no seu navegador. Para trocar de computador, use 💾 Dados → Exportar.</footer>
+</body>
+</html>
