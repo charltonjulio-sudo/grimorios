@@ -39,8 +39,8 @@ header p{color:var(--muted);font-style:italic;font-size:1.1rem}
 .art::after{content:"";position:absolute;inset:auto 0 0 0;height:35%;background:linear-gradient(transparent,rgba(13,11,18,.85))}
 .art img{position:relative;z-index:1;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card:hover .art>img{transform:scale(1.04)}
-.turgon .art img{width:78%;max-width:300px;aspect-ratio:1;border-radius:50%;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
-.cael .art>img{position:absolute;inset:14px 0 6px;width:100%;height:calc(100% - 20px);object-fit:contain;filter:drop-shadow(0 12px 30px rgba(0,0,0,.6))}
+.cael .portrait{background:radial-gradient(circle at 50% 42%,rgba(150,96,220,.38),rgba(20,14,32,.96) 72%)}
+.cael .portrait img{object-fit:contain;padding:10px 6px 4px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.6))}
 .card.voo{--acc:#e8b45a;--glow:rgba(232,170,70,.32)}
 .portrait{position:relative;z-index:1;width:min(64%,250px);aspect-ratio:316/408;border-radius:999px 999px 18px 18px;overflow:hidden;
  border:2px solid color-mix(in srgb,var(--acc) 75%,transparent);box-shadow:0 0 0 6px rgba(13,11,18,.6),0 0 0 7px color-mix(in srgb,var(--acc) 35%,transparent),0 18px 40px rgba(0,0,0,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
@@ -76,7 +76,7 @@ footer{margin-top:clamp(2.5rem,6vw,4rem);color:var(--muted);font-size:.9rem;text
 
 <main class="cards">
  <a class="card turgon" href="turgon_grimorio.html">
-  <div class="art"><img src="img/turgon.webp" alt="Turgon, de capuz e rosto coberto por um lenço" width="300" height="300"></div>
+  <div class="art"><div class="portrait"><img src="img/turgon_retrato.webp" alt="Turgon, de capuz e rosto coberto por um lenço" width="316" height="408"></div></div>
   <div class="body">
    <span class="cls">Nagah · Mago 9</span>
    <h2>Turgon</h2>
@@ -86,7 +86,7 @@ footer{margin-top:clamp(2.5rem,6vw,4rem);color:var(--muted);font-size:.9rem;text
  </a>
  <a class="card cael" href="cael_grimorio.html">
   <div class="art">
-   <img src="img/cael.webp" alt="Cael, sprite de asas de cristal negro" width="240" height="360">
+   <div class="portrait"><img src="img/cael.webp" alt="Cael, sprite de asas de cristal negro" width="240" height="360"></div>
    <div class="pet" title="Brasa, companheiro animal"><img src="img/brasa.webp" alt="" width="113" height="113"><span>BRASA</span></div>
   </div>
   <div class="body">
